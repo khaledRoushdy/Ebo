@@ -7,7 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.automation.elements.Button;
+import com.automation.elements.Element;
+import com.automation.elements.Span;
+import com.automation.elements.Textbox;
 import com.automation.excel.ExcelUtilities;
 import com.automation.jsonParser.ElementParser;
 
@@ -19,6 +25,19 @@ public class App {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 
+		ChromeDriver driver = new ChromeDriver();
+		WebElement element = driver.findElement(By.id(""));
+		Button e = new Button(By.id(""), driver);
+		e.clickOnButton();
+
+		Textbox text = new Textbox(By.className(""),driver);
+		text.enterText("");
+		Span span = new Span(By.cssSelector(""),driver);
+		String xxxx = span.getText();
+
+		
+		
+		
 		// ElementParser parser = new
 		// ElementParser("C:\\Users\\asus\\Desktop\\MyTrialsPage.json");
 		// By grid= parser.getElementByName("TrialsGrid");
@@ -31,10 +50,10 @@ public class App {
 		try {
 
 			allData = excelUtilties.getAllTestCasesData("C:\\Users\\asus\\Downloads\\Data3.xlsx", "LoginTests");
-			
-		} catch (IOException e) {
+
+		} catch (IOException ex) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ex.printStackTrace();
 		}
 
 		for (String k : allData.keySet()) {

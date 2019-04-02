@@ -3,9 +3,7 @@ package com.automation.jsonParser;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +15,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import junit.framework.Test;
 
 public class ElementParser {
 
@@ -25,7 +22,7 @@ public class ElementParser {
 
 	public ElementParser(String fileName) {
 		elements = new HashMap<String, By>();
-		ArrayList<WebElement> webElements = deserializeWebElements(fileName);
+		ArrayList<JsonWebElement> webElements = deserializeWebElements(fileName);
 		addElementsToMap(webElements);
 	}
 
@@ -33,26 +30,24 @@ public class ElementParser {
 		return elements.get(name);
 	}
 
-	private void addElementsToMap(ArrayList<WebElement> webElementItems) {
-		for (WebElement webElement : webElementItems) {
+	private void addElementsToMap(ArrayList<JsonWebElement> webElementItems) {
+		for (JsonWebElement webElement : webElementItems) {
 			By locator = LocatorFactory.createLocator(webElement);
 			elements.put(webElement.getName(), locator);
 		}
 	}
 
-	private ArrayList<WebElement> deserializeWebElements(String fileName) {
-		ArrayList<WebElement> elements = new ArrayList<WebElement>();
+	private ArrayList<JsonWebElement> deserializeWebElements(String fileName) {
+		ArrayList<JsonWebElement> elements = new ArrayList<JsonWebElement>();
 		ObjectMapper objectMapper = new ObjectMapper();
-
-		WebElement[] pojos = null;
 		try {
 			// pojos = objectMapper.readValue(fileName, WebElement[].class);
-			 String userDataJSON = "[{\"value\":\"value11\",\"name\": \"value12\",\"locator\":\"value13\"},"
-                     + "{\"value\": \"value21\",\"name\":\"value22\",\"locator\": \"value23\"}]";
+			// String userDataJSON = "[{\"value\":\"value11\",\"name\": \"value12\",\"locator\":\"value13\"},"
+             //        + "{\"value\": \"value21\",\"name\":\"value22\",\"locator\": \"value23\"}]";
 			InputStream is = new FileInputStream(fileName);
-			elements = objectMapper.readValue(userDataJSON, new TypeReference<List<WebElement>>() {
-			});
-			elements = objectMapper.readValue(is, new TypeReference<List<WebElement>>() {
+			//elements = objectMapper.readValue(userDataJSON, new TypeReference<List<WebElement>>() {
+			//});
+			elements = objectMapper.readValue(is, new TypeReference<List<JsonWebElement>>() {
 			});
 
 		} catch (JsonParseException e) {
@@ -65,7 +60,6 @@ public class ElementParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//elements = (ArrayList<WebElement>) Arrays.asList(pojos);
 		return elements;
 	}
 }

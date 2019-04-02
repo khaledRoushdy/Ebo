@@ -1,8 +1,6 @@
 package com.automation.jsonParser;
 
-import java.io.Serializable;
-
-public class WebElement{
+public class JsonWebElement{
 
     private String name;
     private String value;
