@@ -6,13 +6,24 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 public class Driver {
 
 	private WebDriver webdriver;
 
+	public WebDriver getWebdriver() {
+		return webdriver;
+	}
+
+	public void setWebdriver(WebDriver webdriver) {
+		this.webdriver = webdriver;
+	}
+
 	public WebDriver getDriver(String name) {
 
-		switch (name) {
+		switch (name.toLowerCase()) {
 
 		case DriverTypes.IE:
 			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
@@ -24,15 +35,42 @@ public class Driver {
 			caps.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
 			caps.setCapability(InternetExplorerDriver.IE_SWITCHES, "-private");
 			System.setProperty("webdriver.ie.driver", "src/main/resources/seleniumdrivers/IEDriverServer.exe");
-			webdriver = new InternetExplorerDriver();
+			setWebdriver(new InternetExplorerDriver());
 			break;
 
 		case DriverTypes.Chrome:
 			System.setProperty("webdriver.chrome.driver", "src/main/resources/seleniumdrivers/chromedriver.exe");
-			webdriver = new ChromeDriver();
+			setWebdriver(new ChromeDriver());
 			break;
 		}
-		return webdriver;
-
+		return getWebdriver();
 	}
+
+	public void goToUrl(String url, ExtentTest test) {
+		getWebdriver().get(url);
+		test.log(Status.INFO, "Browser has been navigated to " + url);
+	}
+
+	public void goToUrl(String url) {
+		getWebdriver().get(url);
+	}
+
+	public void closeSingleWindow() {
+		getWebdriver().close();
+	}
+
+	public void closeSingleWindow(ExtentTest test) {
+		getWebdriver().close();
+		test.log(Status.INFO, "The window has been closed");
+	}
+
+	public void closeAllWindows() {
+		getWebdriver().quit();
+	}
+
+	public void closeAllWindows(ExtentTest test) {
+		getWebdriver().quit();
+		test.log(Status.INFO, "All windows have been closed");
+	}
+
 }

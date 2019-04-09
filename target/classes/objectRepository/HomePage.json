@@ -1,0 +1,12 @@
+﻿[
+  {
+    "name": "loginAutomationLink",
+    "locator": "cssSelector",
+    "value": "div.et_pb_text_inner ul li:nth-child(6) a"
+  },
+  {
+    "name": "landingLink",
+    "locator": "cssSelector",
+    "value": "div.et_pb_text_inner ul li:nth-child(2) a"
+  }
+]

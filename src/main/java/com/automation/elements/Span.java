@@ -2,23 +2,24 @@ package com.automation.elements;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import com.automation.browser.Driver;
+import com.automation.utilities.DriverUtilities;
 
 public class Span extends Element implements IGetTexable {
 
-	public Span(By byLocator, WebDriver driver) {
+	public Span(By byLocator, Driver driver) {
 		super(byLocator, driver);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String getText() {
-		return getElement().getText();
-		
+		return getElement().getText();	
 	}
 
 	@Override
-	public String getTextUsingJs() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getTextUsingJs() {	
+		return DriverUtilities.executeJsScript("return arguments[0].text", driver.getWebdriver(),getElement()).toString();
 	}	
 }

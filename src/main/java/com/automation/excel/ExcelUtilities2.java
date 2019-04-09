@@ -9,43 +9,46 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.automation.utilities.Utilities;
+
 public class ExcelUtilities2 {
 
-	private ExcelWorkBook excelWorkBook;
-	private Workbook workBook;
+/*	private ExcelParser excelWorkBook;
+	
 	
 
-	public ExcelUtilities2(ExcelWorkBook workbook) {
+	public ExcelUtilities2(ExcelParser workbook) {
 		this.excelWorkBook = workbook;
 		getWorkBook();
 	}
 
 	private Workbook getWorkBook() {
-		workBook = excelWorkBook.getWorkbook();
-		return workBook;
+		return excelWorkBook.getWorkbook();
 	}
 	
-	private boolean isSheetExists(String filePath,String sheetName) throws IOException {
-
-		Sheet sheet = workBook.getSheet(sheetName);
-		Iterator<Sheet> sheetIterator = workBook.iterator();
-		boolean foundSheet = false;
-		while (sheetIterator.hasNext()) {
-			Sheet validSheet = sheetIterator.next();
-			if (validSheet.equals(sheet)) {
-				foundSheet = true;
-				break;
-			}
-		}
-		return foundSheet;
-	}
+//	private boolean isSheetExists(String filePath,String sheetName) throws IOException {
+//
+//		Sheet sheet = workBook.getSheet(sheetName);
+//		Iterator<Sheet> sheetIterator = workBook.iterator();
+//		boolean foundSheet = false;
+//		while (sheetIterator.hasNext()) {
+//			Sheet validSheet = sheetIterator.next();
+//			if (validSheet.equals(sheet)) {
+//				foundSheet = true;
+//				break;
+//			}
+//		}
+//		return foundSheet;
+//	}
 
 	public String getValue(String filePath, String sheetName, String column, String testCaseName)
 			throws IOException {
-
-		boolean sheetExists = isSheetExists(filePath,sheetName);
+		
+		excelWorkBook.getExcelSheet(sheetName);
+		boolean sheetExists = Utilities.isSheetExists(workBook, sheetName);
 		if (sheetExists) {
 			String specificData = null;
+			
 			Sheet sheet = workBook.getSheet(sheetName);
 			int lastRowNumber = sheet.getLastRowNum();
 			Row columnData = sheet.getRow(0);
@@ -72,7 +75,7 @@ public class ExcelUtilities2 {
 	public HashMap<String,HashMap<String,String>> getAllTestCasesData(String filePath, String sheetName) throws IOException {
 		
 		HashMap<String, HashMap<String, String>> allTestData = new HashMap<String, HashMap<String, String>>();
-		boolean sheetExists = isSheetExists(filePath, sheetName);
+		boolean sheetExists = Utilities.isSheetExists(workBook, sheetName);
 		if (sheetExists) {
 			String specificData = null;
 			Sheet sheet = workBook.getSheet(sheetName);
@@ -104,7 +107,7 @@ public class ExcelUtilities2 {
 			throws IOException {
 
 		ArrayList<String> data = new ArrayList<String>();
-		boolean sheetExists = isSheetExists(filePath, sheetName);
+		boolean sheetExists = Utilities.isSheetExists(workBook, sheetName);
 		if (sheetExists) {
 			String specificData = null;
 			Sheet sheet = workBook.getSheet(sheetName);
@@ -137,7 +140,7 @@ public class ExcelUtilities2 {
 			throws IOException {
 		HashMap<String, String> map = new HashMap<String, String>();
 		// ArrayList<String> testCaseData = new ArrayList<String>();
-		boolean sheetExists = isSheetExists(filePath, sheetName);
+		boolean sheetExists = Utilities.isSheetExists(workBook, sheetName);
 		if (sheetExists) {
 			String specificData = null;
 			Sheet sheet = workBook.getSheet(sheetName);
@@ -164,4 +167,5 @@ public class ExcelUtilities2 {
 		}
 		return null;
 	}
+	*/
 }
