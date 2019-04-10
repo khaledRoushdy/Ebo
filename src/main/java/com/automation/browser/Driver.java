@@ -6,13 +6,15 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.automation.utilities.DriverUtilities;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-public class Driver {
+public class Driver implements IDriveable{
 
 	private WebDriver webdriver;
-
+	private JavascriptDriver jsDriver;
+	
 	public WebDriver getWebdriver() {
 		return webdriver;
 	}
@@ -46,31 +48,47 @@ public class Driver {
 		return getWebdriver();
 	}
 
+	@Override
 	public void goToUrl(String url, ExtentTest test) {
 		getWebdriver().get(url);
 		test.log(Status.INFO, "Browser has been navigated to " + url);
 	}
 
+	@Override
 	public void goToUrl(String url) {
 		getWebdriver().get(url);
 	}
 
+	@Override
 	public void closeSingleWindow() {
 		getWebdriver().close();
 	}
 
+	@Override
 	public void closeSingleWindow(ExtentTest test) {
 		getWebdriver().close();
-		test.log(Status.INFO, "The window has been closed");
+		test.log(Status.INFO, "The browser has been closed");
 	}
 
+	@Override
 	public void closeAllWindows() {
 		getWebdriver().quit();
 	}
 
+	@Override
 	public void closeAllWindows(ExtentTest test) {
 		getWebdriver().quit();
 		test.log(Status.INFO, "All windows have been closed");
 	}
 
+	@Override
+	public void scrollDown() {
+		jsDriver = new JavascriptDriver();
+		jsDriver.executeJsScript("window.scrollBy(0,500)", getWebdriver());
+	}
+
+	@Override
+	public void scrollUp() {
+		
+	}
 }

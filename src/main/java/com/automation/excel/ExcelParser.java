@@ -16,7 +16,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.automation.utilities.Utilities;
+import com.automation.utilities.ElementUtilities;
 
 public class ExcelParser implements IExcelParser {
 
@@ -42,7 +42,7 @@ public class ExcelParser implements IExcelParser {
 
 	public Sheet getExcelSheet(String sheetName) throws IOException {
 		Sheet sheet = getWorkbook().getSheet(sheetName);
-		if (Utilities.isSheetExists(workbook, sheetName))
+		if (ExcelUtilities.isSheetExists(workbook, sheetName))
 			return sheet;
 		return null;
 	}
@@ -66,7 +66,6 @@ public class ExcelParser implements IExcelParser {
 				Row testCasesRow = sheet.getRow(j);
 				HashMap<String, String> myMap = new HashMap<String, String>();
 				for (int i = 1; i < columnData.getLastCellNum(); i++) {
-					System.out.println("no of cells in row" + columnData.getLastCellNum());
 					String key = columnData.getCell(i).getStringCellValue();
 					DataFormatter formatter = new DataFormatter();
 					String value = formatter.formatCellValue(testCasesRow.getCell(i));
@@ -161,7 +160,6 @@ public class ExcelParser implements IExcelParser {
 			Cell cell = row.getCell(colIndex);
 			DataFormatter formatter = new DataFormatter();
 			value = formatter.formatCellValue(cell);
-
 		}
 		return value;
 	}

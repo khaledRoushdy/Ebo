@@ -7,15 +7,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.automation.browser.Driver;
+import com.automation.browser.JavascriptDriver;
 
 public abstract class Element {
 
 	protected By byLocator;
 	protected Driver driver;
+	protected JavascriptDriver jsDriver;
 	
 	public Element(By byLocator,Driver driver) {
 		this.byLocator = byLocator;
 		this.driver = driver;
+		jsDriver = new JavascriptDriver();
 	}
 	
 	protected WebElement getElement() {

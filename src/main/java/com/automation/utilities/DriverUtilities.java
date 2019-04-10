@@ -10,4 +10,9 @@ public class DriverUtilities {
 		JavascriptDriver jsDriver = new JavascriptDriver();
 		return jsDriver.getJs(driver).executeScript(script, element);
 	}
+	
+	public static void executeJsScript(String script,WebDriver driver) {
+		JavascriptDriver jsDriver = new JavascriptDriver();
+		jsDriver.getJs(driver).executeScript(script);
+	}
 }

@@ -8,7 +8,6 @@ import java.util.Map;
 public class ExcelTestParser implements ITestCaseParser {
 
 	private ExcelParser excelParser;
-
 	public ExcelTestParser(String filePath) throws IOException {
 		this.excelParser = new ExcelParser(filePath);
 	}
