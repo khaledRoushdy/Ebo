@@ -11,6 +11,7 @@ import org.junit.rules.TestName;
 
 import com.automation.browser.Driver;
 import com.automation.excel.ExcelTestParser;
+import com.automation.pages.FramePage;
 import com.automation.pages.HomePage;
 import com.automation.pages.SelectPage;
 import com.automation.pages.SigninPage;
@@ -27,6 +28,7 @@ public class SmokeTests {
 	private ExtentTest test;
 	private ExcelTestParser excelTestParser;
 	private SelectPage selectPage;
+	private FramePage framePage;
 	
 	@Rule
 	public TestName name = new TestName();
@@ -35,8 +37,7 @@ public class SmokeTests {
 	public void setUp() throws IOException {
 		extentReport = ExtentManager.getExtent("C:\\Users\\asus\\Downloads", "regression report.html");
 		excelTestParser = new ExcelTestParser("C:\\Users\\asus\\Downloads\\data10.xlsx");
-		driver = new Driver();
-		driver.getDriver("chrome");
+		driver = new Driver("Chrome");
 	}
 
 	@Test
@@ -44,6 +45,7 @@ public class SmokeTests {
 		test = extentReport.createTest(name.getMethodName(), "Should navigate to automation link");
 		homePage = new HomePage(driver,test);
 		driver.goToUrl("https://www.ultimateqa.com/automation/",test);
+		driver.maximizeWindow();
 		homePage.goToAutomationLink();
 	}
 	
@@ -73,6 +75,15 @@ public class SmokeTests {
 		driver.goToUrl("https://www.toolsqa.com/automation-practice-form/",test);
 		selectPage = new SelectPage(driver, test);
 		selectPage.selectContient("Africa");
+	}
+	
+	@Test
+	public void shouldGoToFrame() {
+		test = extentReport.createTest(name.getMethodName(), "should go to frame");
+		driver.goToUrl("https://www.toolsqa.com/iframe-practice-page/");
+		framePage = new FramePage(driver, test);
+		framePage.goToFrame();
+		
 	}
 	@After
 	public void tearDown() {

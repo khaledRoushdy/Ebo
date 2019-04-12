@@ -1,0 +1,7 @@
+﻿[
+  {
+    "name": "frame1",
+    "locator": "xpath",
+    "value": "//iframe"
+  }
+]

@@ -7,7 +7,7 @@ import com.automation.browser.Driver;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-public class DropDownList extends Element implements ISelectable {
+public class DropDownList extends Element implements ISelectable,IMouseMoveable {
 
 	public DropDownList(By byLocator, Driver driver) {
 		super(byLocator, driver);
@@ -86,5 +86,16 @@ public class DropDownList extends Element implements ISelectable {
 	public void deselectByValue(String value, String dropDownName, ExtentTest test) {
 		getSelect().deselectByValue(value);
 		test.log(Status.INFO, "item with value " + value + "has been deselected from " + dropDownName);
+	}
+
+	@Override
+	public void moveToElement() {
+		actionDriver.moveToElement(driver.getWebdriver(), getElement());
+	}
+
+	@Override
+	public void moveByOffset() {
+		// TODO Auto-generated method stub
+		
 	}
 }

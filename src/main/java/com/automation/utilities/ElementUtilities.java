@@ -1,4 +1,6 @@
 package com.automation.utilities;
+import java.util.List;
+
 import org.openqa.selenium.By;
 
 import com.automation.browser.Driver;
@@ -6,6 +8,7 @@ import com.automation.elements.Button;
 import com.automation.elements.DropDownList;
 import com.automation.elements.Element;
 import com.automation.elements.ElementTypes;
+import com.automation.elements.Frame;
 import com.automation.elements.HyperLink;
 import com.automation.elements.Textbox;
 import com.automation.jsonParser.ElementParser;
@@ -17,6 +20,13 @@ public class ElementUtilities {
 		By hyperLinkLocator= elementParser.getElementByName(elementName);
 		HyperLink hyperLink = new HyperLink(hyperLinkLocator, driver);
 		return hyperLink;
+	}
+	
+	public static List<HyperLink> getListOfHyperLinks(ElementParser elementParser,Driver driver,String elementName){
+		By hyperLinkLocator= elementParser.getElementByName(elementName);
+		HyperLink hyperLink = new HyperLink(hyperLinkLocator, driver);
+		hyperLink.getTextOfElements();
+		return null;
 	}
 	
 	public static Textbox getTextbox(ElementParser elementParser,Driver driver,String elementName) {
@@ -35,6 +45,12 @@ public class ElementUtilities {
 		By dropDownLocator = elementParser.getElementByName(elementName);
 		DropDownList dropDownList = new DropDownList(dropDownLocator, driver);
 		return dropDownList;
+	}
+	
+	public static Frame getFrame(ElementParser elementParser,Driver driver,String elementName) {
+		By frameLocator = elementParser.getElementByName(elementName);
+		Frame frame = new Frame(frameLocator,driver);
+		return frame;
 	}
 	
 	public static Element getWebElement(ElementTypes type,ElementParser elementParser,Driver driver,String elementName) {

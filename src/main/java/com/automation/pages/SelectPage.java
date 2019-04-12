@@ -23,6 +23,7 @@ public class SelectPage {
 	}
 
 	public void selectContient(String continentName) {
+		continents().moveToElement();
 		continents().selectByVisibleText(continentName, "Continents", test);
 	}
 }

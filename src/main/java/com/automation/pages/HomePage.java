@@ -26,6 +26,7 @@ public class HomePage {
 	private HyperLink loginAutomationLink() {
 		return ElementUtilities.getHyperLink(elementParser, driver, "loginAutomationLink");
 	}
+	
 
 	private HyperLink landingLink() {
 		return ElementUtilities.getHyperLink(elementParser, driver, "landingLink");
