@@ -1,4 +1,4 @@
-package com.automation.elements;
+package com.automation.elements.readableelements;
 
 import org.openqa.selenium.By;
 import com.automation.browser.Driver;

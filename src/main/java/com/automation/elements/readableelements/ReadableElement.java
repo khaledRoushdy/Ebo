@@ -1,8 +1,10 @@
-package com.automation.elements;
+package com.automation.elements.readableelements;
 
 import org.openqa.selenium.By;
 
 import com.automation.browser.Driver;
+import com.automation.elements.Element;
+import com.automation.elements.IGetTexable;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 

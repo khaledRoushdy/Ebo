@@ -4,17 +4,23 @@ import java.util.List;
 import org.openqa.selenium.By;
 
 import com.automation.browser.Driver;
-import com.automation.elements.Button;
 import com.automation.elements.DropDownList;
 import com.automation.elements.Element;
 import com.automation.elements.ElementTypes;
 import com.automation.elements.Frame;
-import com.automation.elements.HyperLink;
-import com.automation.elements.Textbox;
+import com.automation.elements.clickableelements.Button;
+import com.automation.elements.clickableelements.HyperLink;
+import com.automation.elements.inputelements.Textbox;
 import com.automation.jsonParser.ElementParser;
 
 
 public class ElementUtilities {
+	
+	public static Element getElement(IGetElement element,ElementParser parser,Driver driver,String elementName) {
+		BaseElement baseElement = new BaseElement(element);
+		Element e= baseElement.getElement(parser, driver, elementName);
+		return e;
+	}
 	
 	public static HyperLink getHyperLink(ElementParser elementParser,Driver driver,String elementName) {
 		By hyperLinkLocator= elementParser.getElementByName(elementName);

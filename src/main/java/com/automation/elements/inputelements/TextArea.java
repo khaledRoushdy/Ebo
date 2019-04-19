@@ -1,4 +1,4 @@
-package com.automation.elements;
+package com.automation.elements.inputelements;
 
 import org.openqa.selenium.By;
 

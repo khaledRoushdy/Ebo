@@ -1,8 +1,9 @@
-package com.automation.elements;
+package com.automation.elements.clickableelements;
 
 import org.openqa.selenium.By;
 
 import com.automation.browser.Driver;
+import com.automation.elements.IAlertable;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 

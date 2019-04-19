@@ -3,33 +3,42 @@ package com.automation.pages;
 import org.openqa.selenium.By;
 
 import com.automation.browser.Driver;
-import com.automation.elements.Button;
 import com.automation.elements.Element;
 import com.automation.elements.ElementTypes;
-import com.automation.elements.HyperLink;
+import com.automation.elements.clickableelements.Button;
+import com.automation.elements.clickableelements.HyperLink;
 import com.automation.jsonParser.ElementParser;
+import com.automation.utilities.BaseElement;
 import com.automation.utilities.ElementUtilities;
+import com.automation.utilities.GetHyperLink;
 import com.aventstack.extentreports.ExtentTest;
 
 public class HomePage {
 
-	private ElementParser elementParser;
+	private ElementParser elementParser = new ElementParser("src/main/resources/objectRepository/HomePage.json");
 	private Driver driver;
 	private ExtentTest test;
 
 	public HomePage(Driver driver, ExtentTest test) {
-		this.elementParser = new ElementParser("src/main/resources/objectRepository/HomePage.json");
 		this.driver = driver;
 		this.test = test;
 	}
+	
+	public HomePage(Driver driver) {
+		this.driver = driver;
+	}
 
 	private HyperLink loginAutomationLink() {
-		return ElementUtilities.getHyperLink(elementParser, driver, "loginAutomationLink");
+
+		BaseElement element = new BaseElement(new GetHyperLink());
+		HyperLink link = (HyperLink) element.getElement(elementParser, driver, "loginAutomationLink");
+		return link;
 	}
-	
 
 	private HyperLink landingLink() {
-		return ElementUtilities.getHyperLink(elementParser, driver, "landingLink");
+		HyperLink link = (HyperLink) ElementUtilities.getElement(new GetHyperLink(), elementParser, driver,
+				"landingLink");
+		return link;
 	}
 
 	public void goToAutomationLink() {

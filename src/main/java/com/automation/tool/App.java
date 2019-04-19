@@ -14,9 +14,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.automation.browser.Driver;
-import com.automation.elements.Button;
-import com.automation.elements.HyperLink;
-import com.automation.elements.Textbox;
+import com.automation.elements.clickableelements.Button;
+import com.automation.elements.clickableelements.HyperLink;
+import com.automation.elements.inputelements.Textbox;
 import com.automation.excel.ExcelParser;
 import com.automation.excel.ExcelTestParser;
 import com.automation.report.ExtentManager;

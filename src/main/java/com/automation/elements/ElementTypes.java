@@ -6,7 +6,7 @@ public enum ElementTypes {
 	SPAN("span"),
 	HYPERLINK("hyperLink"),
 	BUTTON("button"),
-	SELECT("select");
+	DROPDOWNLIST("dropdownlist");
 	
 	private final String type;
 

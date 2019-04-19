@@ -1,4 +1,4 @@
-package com.automation.elements;
+package com.automation.elements.clickableelements;
 
 import java.util.List;
 
