@@ -4,14 +4,14 @@ import java.util.List;
 import org.openqa.selenium.By;
 
 import com.automation.browser.Driver;
-import com.automation.elements.DropDownList;
 import com.automation.elements.Element;
 import com.automation.elements.ElementTypes;
 import com.automation.elements.Frame;
 import com.automation.elements.clickableelements.Button;
-import com.automation.elements.clickableelements.HyperLink;
+import com.automation.elements.clickableelements.Hyperlink;
 import com.automation.elements.inputelements.Textbox;
 import com.automation.jsonParser.ElementParser;
+import com.automation.selectelements.DropDownList;
 
 
 public class ElementUtilities {
@@ -22,16 +22,16 @@ public class ElementUtilities {
 		return e;
 	}
 	
-	public static HyperLink getHyperLink(ElementParser elementParser,Driver driver,String elementName) {
+	public static Hyperlink getHyperLink(ElementParser elementParser,Driver driver,String elementName) {
 		By hyperLinkLocator= elementParser.getElementByName(elementName);
-		HyperLink hyperLink = new HyperLink(hyperLinkLocator, driver);
+		Hyperlink hyperLink = new Hyperlink(hyperLinkLocator, driver);
 		return hyperLink;
 	}
 	
-	public static List<HyperLink> getListOfHyperLinks(ElementParser elementParser,Driver driver,String elementName){
+	public static List<Hyperlink> getListOfHyperLinks(ElementParser elementParser,Driver driver,String elementName){
 		By hyperLinkLocator= elementParser.getElementByName(elementName);
-		HyperLink hyperLink = new HyperLink(hyperLinkLocator, driver);
-		hyperLink.getTextOfElements();
+		Hyperlink hyperLink = new Hyperlink(hyperLinkLocator, driver);
+		//hyperLink.getTextOfElements();
 		return null;
 	}
 	
@@ -68,7 +68,7 @@ public class ElementUtilities {
 		case TEXTBOX:
 			return new Textbox(elementLocator, driver);
 		case HYPERLINK:
-			return new HyperLink(elementLocator, driver);	
+			return new Hyperlink(elementLocator, driver);	
 		default:
 			break;
 		}

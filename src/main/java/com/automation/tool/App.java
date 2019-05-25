@@ -15,7 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.automation.browser.Driver;
 import com.automation.elements.clickableelements.Button;
-import com.automation.elements.clickableelements.HyperLink;
+import com.automation.elements.clickableelements.Hyperlink;
 import com.automation.elements.inputelements.Textbox;
 import com.automation.excel.ExcelParser;
 import com.automation.excel.ExcelTestParser;
@@ -85,7 +85,7 @@ public class App {
 //		button.clickOnItUsingJs();
 
 		driver.goToUrl("https://www.google.com/", test);
-		HyperLink link = new HyperLink(By.cssSelector("div#SIvCob>a:nth-child(1)"), driver);
+		Hyperlink link = new Hyperlink(By.cssSelector("div#SIvCob>a:nth-child(1)"), driver);
 		link.clickOnIt();
 
 		Textbox textbox = new Textbox(By.name("q"), driver);

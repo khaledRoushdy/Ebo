@@ -1,8 +1,8 @@
 package com.automation.pages;
 
 import com.automation.browser.Driver;
-import com.automation.elements.DropDownList;
 import com.automation.jsonParser.ElementParser;
+import com.automation.selectelements.DropDownList;
 import com.automation.utilities.ElementUtilities;
 import com.aventstack.extentreports.ExtentTest;
 

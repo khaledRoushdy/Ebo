@@ -1,5 +1,6 @@
 package com.automation.browser;
 
+import org.apache.poi.ss.formula.eval.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -42,7 +43,7 @@ public class ActionDriver implements IActionable{
 
 	@Override
 	public void moveByOffset() {
-		// TODO Auto-generated method stub
+		throw new NotImplementedException("not implemented yet");
 		
 	}
 

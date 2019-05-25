@@ -65,7 +65,13 @@ public class SmokeTests {
 		signInPage = new SigninPage(driver, test);
 		driver.goToUrl("https://www.ultimateqa.com/automation/",test);
 		homePage.goToAutomationLink();
-		signInPage.signIntoCourses(credentials.get("username").toString(), credentials.get("password").toString());
+		driver.goToUrl("https://www.ultimateqa.com/complicated-page/");
+		System.out.println(signInPage.getMypasswords().size());
+		for (String x: signInPage.getMypasswords()) {
+			System.out.println(x);
+		}
+		//signInPage.signIntoCourses("", "");
+		//signInPage.signIntoCourses(credentials.get("username").toString(), credentials.get("password").toString());
 		
 	}
 	

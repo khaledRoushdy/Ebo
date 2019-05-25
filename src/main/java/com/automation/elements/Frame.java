@@ -5,16 +5,13 @@ import com.automation.browser.Driver;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-public class Frame implements IFrameable{
+public class Frame extends Element implements IFrameable{
 
-	protected By byLocator;
-	protected Driver driver;
-	
-	public Frame(By byLocator,Driver driver) {
-		this.byLocator = byLocator;
-		this.driver = driver;
+	public Frame(By byLocator, Driver driver) {
+		super(byLocator, driver);
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public void switchToFrame() {
 		driver.switchToFrame(byLocator);

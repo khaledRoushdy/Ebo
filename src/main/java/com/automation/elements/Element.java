@@ -13,7 +13,7 @@ import com.automation.browser.JavascriptDriver;
 import com.automation.browser.WaitDriver;
 import com.automation.jsonParser.ElementParser;
 
-public abstract class Element{
+public abstract class Element implements IElementActions,IMouseMoveable{
 
 	protected By byLocator;
 	protected Driver driver;
@@ -37,9 +37,55 @@ public abstract class Element{
 		return webdriver.findElement(byLocator);
 	}
 	
-	protected List<WebElement> getElements(){
-		WebDriver webdriver = driver.getWebdriver();
-		waitDriver.waitForElementToBePresent(byLocator, webdriver);
-		return webdriver.findElements(byLocator);
+//	protected List<WebElement> getElements(){
+//		WebDriver webdriver = driver.getWebdriver();
+//		waitDriver.waitForElementToBePresent(byLocator, webdriver);
+//		return webdriver.findElements(byLocator);
+//	}
+	
+	@Override
+	public boolean isEnabled() {
+		return getElement().isEnabled();
+	}
+
+	@Override
+	public boolean isDisplayed() {
+		return getElement().isDisplayed();
+	}
+
+	@Override
+	public boolean isSelected() {
+		return getElement().isSelected();
+	}
+
+	@Override
+	public String getCssValue(String propertyName) {
+		return getElement().getCssValue(propertyName);
+	}
+
+	@Override
+	public String getAttributeValue(String attributeName) {
+		return getElement().getAttribute(attributeName);
+	}
+
+	@Override
+	public int getElementHeight() {
+		return getElement().getSize().height;
+	}
+	
+	@Override
+	public int getElementWidth() {
+		return getElement().getSize().width;
+	}
+	
+	@Override
+	public void moveToElement() {
+		actionDriver.moveToElement(driver.getWebdriver(), getElement());
+	}
+
+	@Override
+	public void moveByOffset() {
+		// TODO Auto-generated method stub
+		
 	}
 }

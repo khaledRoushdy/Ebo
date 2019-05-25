@@ -3,18 +3,16 @@ package com.automation.elements.clickableelements;
 import org.openqa.selenium.By;
 
 import com.automation.browser.Driver;
+import com.automation.elements.Element;
 import com.automation.elements.IAlertable;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-public class Alert implements IAlertable {
+public class Alert extends Element implements IAlertable{
 
-	protected By byLocator;
-	protected Driver driver;
-
-	public Alert(By byLocator,Driver driver) {
-		this.byLocator = byLocator;
-		this.driver = driver;
+	public Alert(By byLocator, Driver driver) {
+		super(byLocator, driver);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

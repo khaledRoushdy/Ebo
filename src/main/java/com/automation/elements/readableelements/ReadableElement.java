@@ -38,4 +38,17 @@ public class ReadableElement extends Element implements IGetTexable{
 		test.log(Status.INFO, text + " has been gotten from " + elementName);
 		return text;
 	}
+
+	@Override
+	public String getAttributeValue() {
+		String attributeValue = getElement().getAttribute("value");
+		return attributeValue;
+	}
+
+	@Override
+	public String getAttributeValue(ExtentTest test, String elementName) {
+		String attributeValue = getElement().getAttribute("value");
+		test.log(Status.INFO, attributeValue + " has been gotten from " + elementName);
+		return attributeValue;
+	}
 }

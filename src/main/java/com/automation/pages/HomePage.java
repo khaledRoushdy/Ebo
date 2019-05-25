@@ -6,7 +6,7 @@ import com.automation.browser.Driver;
 import com.automation.elements.Element;
 import com.automation.elements.ElementTypes;
 import com.automation.elements.clickableelements.Button;
-import com.automation.elements.clickableelements.HyperLink;
+import com.automation.elements.clickableelements.Hyperlink;
 import com.automation.jsonParser.ElementParser;
 import com.automation.utilities.BaseElement;
 import com.automation.utilities.ElementUtilities;
@@ -28,21 +28,22 @@ public class HomePage {
 		this.driver = driver;
 	}
 
-	private HyperLink loginAutomationLink() {
+	private Hyperlink loginAutomationLink() {
 
 		BaseElement element = new BaseElement(new GetHyperLink());
-		HyperLink link = (HyperLink) element.getElement(elementParser, driver, "loginAutomationLink");
+		Hyperlink link = (Hyperlink) element.getElement(elementParser, driver, "loginAutomationLink");
 		return link;
 	}
 
-	private HyperLink landingLink() {
-		HyperLink link = (HyperLink) ElementUtilities.getElement(new GetHyperLink(), elementParser, driver,
+	private Hyperlink landingLink() {
+		Hyperlink link = (Hyperlink) ElementUtilities.getElement(new GetHyperLink(), elementParser, driver,
 				"landingLink");
 		return link;
 	}
 
 	public void goToAutomationLink() {
-		loginAutomationLink().clickOnIt("login automation link", test);
+		loginAutomationLink().clickOnItUsingJs();
+		//loginAutomationLink().clickOnIt("login automation link", test);
 	}
 
 	public void goToLandingPage() {

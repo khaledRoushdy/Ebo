@@ -1,7 +1,5 @@
 package com.automation.elements;
 
-import org.openqa.selenium.WebElement;
-
 import com.aventstack.extentreports.ExtentTest;
 
 public interface IMouseClickable {

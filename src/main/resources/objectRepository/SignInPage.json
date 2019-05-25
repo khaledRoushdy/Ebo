@@ -13,5 +13,10 @@
     "name": "signin",
     "locator": "name",
     "value": "commit"
+  },
+  {
+    "name": "mypasswords",
+      "locator":"cssSelector",
+      "value":"a.et_pb_button"
   }
 ]
