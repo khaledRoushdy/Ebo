@@ -4,6 +4,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,8 +17,8 @@ public class Driver implements IDriveable {
 	private JavascriptDriver jsDriver;
 	private WaitDriver waitDriver;
 
-	public Driver(String driverName) {
-		this.webdriver = setDriver(driverName);
+	public Driver(String driverName, String driverLocation) {
+		this.webdriver = setDriver(driverName, driverLocation);
 		jsDriver = new JavascriptDriver();
 		waitDriver = new WaitDriver(40);
 	}
@@ -26,7 +27,7 @@ public class Driver implements IDriveable {
 		return webdriver;
 	}
 
-	public WebDriver setDriver(String name) {
+	public WebDriver setDriver(String name, String location) {
 
 		switch (name.toLowerCase()) {
 
@@ -39,13 +40,18 @@ public class Driver implements IDriveable {
 			caps.setCapability(InternetExplorerDriver.ENABLE_ELEMENT_CACHE_CLEANUP, true);
 			caps.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
 			caps.setCapability(InternetExplorerDriver.IE_SWITCHES, "-private");
-			System.setProperty("webdriver.ie.driver", "src/main/resources/seleniumdrivers/IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", location);
 			webdriver = new InternetExplorerDriver();
 			break;
 
 		case DriverTypes.Chrome:
-			System.setProperty("webdriver.chrome.driver", "src/main/resources/seleniumdrivers/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", location);
 			webdriver = new ChromeDriver();
+			break;
+
+		case DriverTypes.FireFox:
+			System.setProperty("webdriver.gecko.driver", location);
+			webdriver = new FirefoxDriver();
 			break;
 		}
 		return webdriver;

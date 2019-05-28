@@ -95,7 +95,7 @@ public class ExcelParser implements IExcelParser {
 	@Override
 	public int getRowIndex(String sheetName, String rowName) throws IOException {
 		Sheet sheet = getExcelSheet(sheetName);
-		for (int i = 0; i < sheet.getLastRowNum(); i++) {
+		for (int i = 0; i <= sheet.getLastRowNum(); i++) {
 			DataFormatter formatter = new DataFormatter();
 			String cellValue = formatter.formatCellValue(sheet.getRow(i).getCell(0));
 			if (cellValue.equals(rowName)) {

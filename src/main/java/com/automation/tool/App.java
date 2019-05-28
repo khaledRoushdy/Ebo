@@ -78,7 +78,7 @@ public class App {
 		//int columnnumber = parser.getColumnIndex("LoginTests", "username");
 		//int rownumber = parser.getRowIndex("LoginTests", "Successful login");
 
-		Driver driver = new Driver("Chrome");
+		Driver driver = new Driver("Chrome","");
 //		driver.goToUrl("https://www.google.com/intl/ALL/gmail/about/");
 //		
 //		Button button = new Button(By.cssSelector("div.item__content>div:nth-child(3)>a:nth-child(1)"),driver);

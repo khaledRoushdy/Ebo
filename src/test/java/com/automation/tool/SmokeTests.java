@@ -1,6 +1,7 @@
 package com.automation.tool;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.After;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 
 import com.automation.browser.Driver;
+import com.automation.browser.DriverTypes;
 import com.automation.excel.ExcelTestParser;
 import com.automation.pages.FramePage;
 import com.automation.pages.HomePage;
@@ -21,6 +23,7 @@ import com.aventstack.extentreports.ExtentTest;
 
 public class SmokeTests {
 
+	
 	private HomePage homePage;
 	private SigninPage signInPage;
 	private Driver driver;
@@ -36,8 +39,9 @@ public class SmokeTests {
 	@Before
 	public void setUp() throws IOException {
 		extentReport = ExtentManager.getExtent("C:\\Users\\asus\\Downloads", "regression report.html");
-		excelTestParser = new ExcelTestParser("C:\\Users\\asus\\Downloads\\data10.xlsx");
-		driver = new Driver("Chrome");
+		excelTestParser = new ExcelTestParser("C:\\Users\\asus\\Downloads\\datatest2.xlsx");
+		driver = new Driver(DriverTypes.Chrome,"src/main/resources/seleniumdrivers/chromedriver.exe");
+		//excelTestParser.getSingleTestData("", "", "");
 	}
 
 	@Test
@@ -60,7 +64,19 @@ public class SmokeTests {
 	@Test
 	public void shouldSignIn() throws IOException {
 		test = extentReport.createTest(name.getMethodName(), "Should be able to sign in");
-		Map<Object,Object> credentials= excelTestParser.getTestCaseData("LoginTests", "Failed login");
+		Map<Object,Object> credentials= excelTestParser.getTestCaseData("AddOwnersAndPetsTests", "login");
+		String y= credentials.get("firstname").toString();
+		String city = excelTestParser.getSingleTestData("AddOwnersAndPetsTests", "login", "city").toString();
+		Map<String,HashMap<String,String>> m= excelTestParser.getAllTestCasesData("AddOwnersAndPetsTests");
+		
+		for(String k : m.keySet()) {
+		    Map<String,String> m1 = m.get(k);
+
+		    for(String k1 : m1.keySet()) {
+		        String l = m1.get(k1);
+		        System.out.println(l);
+		    }
+		}
 		homePage = new HomePage(driver, test);
 		signInPage = new SigninPage(driver, test);
 		driver.goToUrl("https://www.ultimateqa.com/automation/",test);
@@ -96,4 +112,5 @@ public class SmokeTests {
 		driver.closeSingleWindow(test);
 		extentReport.flush();
 	}
+	
 }
