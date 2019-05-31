@@ -2,6 +2,7 @@ package com.automation.tool;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.After;
@@ -45,6 +46,16 @@ public class SmokeTests {
 	}
 
 	@Test
+	public void test1() {
+		driver.goToUrl("https://www.ultimateqa.com/automation/");
+		com.automation.pages.UltimateQcPage ultimateqcPage = new com.automation.pages.UltimateQcPage(driver);
+		List<String> allLinks = ultimateqcPage.getLinks();
+		for(String link: allLinks) {
+			System.out.println(link);
+		}
+	}
+	
+	@Test
 	public void shouldNavigateToAutomationLink() {
 		test = extentReport.createTest(name.getMethodName(), "Should navigate to automation link");
 		homePage = new HomePage(driver,test);
@@ -64,10 +75,10 @@ public class SmokeTests {
 	@Test
 	public void shouldSignIn() throws IOException {
 		test = extentReport.createTest(name.getMethodName(), "Should be able to sign in");
-		Map<Object,Object> credentials= excelTestParser.getTestCaseData("AddOwnersAndPetsTests", "login");
+		Map<Object,Object> credentials= excelTestParser.getSpecificTestCase("AddOwnersAndPetsTests", "login");
 		String y= credentials.get("firstname").toString();
-		String city = excelTestParser.getSingleTestData("AddOwnersAndPetsTests", "login", "city").toString();
-		Map<String,HashMap<String,String>> m= excelTestParser.getAllTestCasesData("AddOwnersAndPetsTests");
+		String city = excelTestParser.getCellValue("AddOwnersAndPetsTests", "login", "city").toString();
+		Map<String,HashMap<String,String>> m= excelTestParser.getAllTestCases("AddOwnersAndPetsTests");
 		
 		for(String k : m.keySet()) {
 		    Map<String,String> m1 = m.get(k);

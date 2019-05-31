@@ -1,0 +1,22 @@
+[
+ {
+  "name": "links",
+  "locator": "CssSelector",
+  "value": "div.et_pb_text_inner a"
+ },
+ {
+  "name": "courses",
+  "locator": "ID",
+  "value": "menu-item-504"
+ },
+ {
+  "name": "SeleniumResources",
+  "locator": "ID",
+  "value": "menu-item-6838"
+ },
+ {
+  "name": "blog",
+  "locator": "ID",
+  "value": "menu-item-477"
+ }
+]

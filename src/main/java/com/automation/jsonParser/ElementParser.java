@@ -22,7 +22,7 @@ public class ElementParser {
 
 	public ElementParser(String fileName) {
 		elements = new HashMap<String, By>();
-		ArrayList<JsonWebElement> webElements = deserializeWebElements(fileName);
+		ArrayList<WebElement> webElements = deserializeWebElements(fileName);
 		addElementsToMap(webElements);
 	}
 
@@ -30,15 +30,15 @@ public class ElementParser {
 		return elements.get(name);
 	}
 
-	private void addElementsToMap(ArrayList<JsonWebElement> webElementItems) {
-		for (JsonWebElement webElement : webElementItems) {
+	private void addElementsToMap(ArrayList<WebElement> webElementItems) {
+		for (WebElement webElement : webElementItems) {
 			By locator = LocatorFactory.createLocator(webElement);
 			elements.put(webElement.getName(), locator);
 		}
 	}
 
-	private ArrayList<JsonWebElement> deserializeWebElements(String fileName) {
-		ArrayList<JsonWebElement> elements = new ArrayList<JsonWebElement>();
+	private ArrayList<WebElement> deserializeWebElements(String fileName) {
+		ArrayList<WebElement> elements = new ArrayList<WebElement>();
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			// pojos = objectMapper.readValue(fileName, WebElement[].class);
@@ -47,7 +47,7 @@ public class ElementParser {
 			InputStream is = new FileInputStream(fileName);
 			//elements = objectMapper.readValue(userDataJSON, new TypeReference<List<WebElement>>() {
 			//});
-			elements = objectMapper.readValue(is, new TypeReference<List<JsonWebElement>>() {
+			elements = objectMapper.readValue(is, new TypeReference<List<WebElement>>() {
 			});
 
 		} catch (JsonParseException e) {

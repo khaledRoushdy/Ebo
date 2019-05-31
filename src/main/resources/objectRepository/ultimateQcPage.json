@@ -1,0 +1,9 @@
+[
+ {
+  "name": "links",
+  "locator": "CssSelector",
+  "value": "div.et_pb_text_inner a",
+  "type": "List",
+  "webElementType": "Hyperlink"
+ }
+]

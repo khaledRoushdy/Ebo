@@ -13,15 +13,15 @@ public class ExcelTestParser implements ITestCaseParser {
 	}
 
 	@Override
-	public Object getSingleTestData(String sheetName, String testCaseName, String testDataKey) throws IOException {
-		int columnIndex = excelParser.getColumnIndex(sheetName, testDataKey);
+	public Object getCellValue(String sheetName, String testCaseName, String columnName) throws IOException {
+		int columnIndex = excelParser.getColumnIndex(sheetName, columnName);
 		int rowIndex = excelParser.getRowIndex(sheetName, testCaseName);
 		Object cellValue = excelParser.getCellValue(sheetName, rowIndex, columnIndex);
 		return cellValue.toString();
 	}
 
 	@Override
-	public Map<Object, Object> getTestCaseData(String sheetName, String testCaseName) throws IOException {
+	public Map<Object, Object> getSpecificTestCase(String sheetName, String testCaseName) throws IOException {
 		Map<Object, Object> testCaseData = new HashMap<Object, Object>();
 		int rowIndex = excelParser.getRowIndex(sheetName, testCaseName);
 		List<Object> rowData = excelParser.getRow(sheetName, rowIndex);
@@ -33,7 +33,7 @@ public class ExcelTestParser implements ITestCaseParser {
 	}
 
 	@Override
-	public HashMap<String, HashMap<String, String>> getAllTestCasesData(String sheetName) throws IOException {
+	public HashMap<String, HashMap<String, String>> getAllTestCases(String sheetName) throws IOException {
 		HashMap<String, HashMap<String, String>> allTestData = excelParser.getSheetData(sheetName);
 		return allTestData;
 	}

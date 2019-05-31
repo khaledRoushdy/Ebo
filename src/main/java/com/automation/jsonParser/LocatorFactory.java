@@ -6,7 +6,7 @@ public class LocatorFactory {
 
 	// private static final String = null;
 
-	public static By createLocator(JsonWebElement element) {
+	public static By createLocator(WebElement element) {
 	
 		By by = null;	
 		String locator = element.getLocator();

@@ -65,7 +65,7 @@ public abstract class ClickableElements extends Element implements IClickable, I
 
 	@Override
 	public void moveByOffset() {
-
+		//throw new Exception("not implemented yet")
 	}
 
 	@Override

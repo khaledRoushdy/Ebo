@@ -64,16 +64,16 @@ public class App {
 		//Sheet sheet = parser.getExcelSheet("LoginTests");
 
 		ExcelTestParser testParser = new ExcelTestParser("C:\\Users\\asus\\Downloads\\data10.xlsx");
-		Map<Object, Object> data = testParser.getTestCaseData("LoginTests", "Successful login");
+		Map<Object, Object> data = testParser.getSpecificTestCase("LoginTests", "Successful login");
 		// testParser.getValue("LoginTests", "username", "Successful login");
 
 		for (Map.Entry<Object, Object> entry : data.entrySet()) {
 			System.out.println(entry.getKey() + "/" + entry.getValue());
 		}
 
-		Map<String, HashMap<String, String>> allData = testParser.getAllTestCasesData("LoginTests");
+		Map<String, HashMap<String, String>> allData = testParser.getAllTestCases("LoginTests");
 
-		String userName = testParser.getSingleTestData("LoginTests", "Failed login", "password").toString();
+		String userName = testParser.getCellValue("LoginTests", "Failed login", "password").toString();
 		
 		//int columnnumber = parser.getColumnIndex("LoginTests", "username");
 		//int rownumber = parser.getRowIndex("LoginTests", "Successful login");
