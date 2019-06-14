@@ -20,6 +20,24 @@ public class ExcelTestParser implements ITestCaseParser {
 		return cellValue.toString();
 	}
 
+//	@Override
+//	public Map<Object, Object> getSpecificTestCase(String sheetName, String testCaseName) throws IOException {
+//		Map<Object, Object> testCaseData = new HashMap<Object, Object>();
+//		int rowIndex = excelParser.getRowIndex(sheetName, testCaseName);
+//		List<Object> rowData = excelParser.getRow(sheetName, rowIndex);
+//		List<Object> keyData = excelParser.getRow(sheetName, 0);
+//		for (int i = 1; i < rowData.size(); i++) {
+//			testCaseData.put(keyData.get(i), rowData.get(i));
+//		}
+//		return testCaseData;
+//	}
+
+	@Override
+	public HashMap<String, HashMap<String, String>> getAllTestCases(String sheetName) throws IOException {
+		HashMap<String, HashMap<String, String>> allTestData = excelParser.getSheetData(sheetName);
+		return allTestData;
+	}
+
 	@Override
 	public Map<Object, Object> getSpecificTestCase(String sheetName, String testCaseName) throws IOException {
 		Map<Object, Object> testCaseData = new HashMap<Object, Object>();
@@ -30,11 +48,5 @@ public class ExcelTestParser implements ITestCaseParser {
 			testCaseData.put(keyData.get(i), rowData.get(i));
 		}
 		return testCaseData;
-	}
-
-	@Override
-	public HashMap<String, HashMap<String, String>> getAllTestCases(String sheetName) throws IOException {
-		HashMap<String, HashMap<String, String>> allTestData = excelParser.getSheetData(sheetName);
-		return allTestData;
 	}
 }
