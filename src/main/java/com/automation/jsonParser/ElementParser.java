@@ -19,13 +19,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ElementParser {
 
 	private Map<String, By> elements;
-
+	/**
+	 * ElementParser constructor is used to parse the json file into list of webelements.
+	 * 
+	 * @param fileName the json file to be deserialized.
+	 */
 	public ElementParser(String fileName) {
 		elements = new HashMap<String, By>();
 		ArrayList<WebElement> webElements = deserializeWebElements(fileName);
 		addElementsToMap(webElements);
 	}
-
+	/**
+	 * gets the locator of any weblement of the page using it's name
+	 * 
+	 * @param name is the name of the webelement
+	 * @return gets the locator of this webelement
+	 */
 	public By getElementByName(String name) {
 		return elements.get(name);
 	}

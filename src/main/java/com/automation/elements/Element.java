@@ -11,9 +11,8 @@ import com.automation.browser.ActionDriver;
 import com.automation.browser.Driver;
 import com.automation.browser.JavascriptDriver;
 import com.automation.browser.WaitDriver;
-import com.automation.jsonParser.ElementParser;
 
-public abstract class Element implements IElementActions,IMouseMoveable{
+public abstract class Element implements IElementActions, IMouseMoveable {
 
 	protected By byLocator;
 	protected Driver driver;
@@ -21,8 +20,8 @@ public abstract class Element implements IElementActions,IMouseMoveable{
 	protected WaitDriver waitDriver;
 	protected ActionDriver actionDriver;
 	protected List<WebElement> webElements;
-	
-	public Element(By byLocator,Driver driver) {
+
+	public Element(By byLocator, Driver driver) {
 		this.byLocator = byLocator;
 		this.driver = driver;
 		jsDriver = new JavascriptDriver();
@@ -30,19 +29,13 @@ public abstract class Element implements IElementActions,IMouseMoveable{
 		actionDriver = new ActionDriver();
 		webElements = new ArrayList<WebElement>();
 	}
-	
+
 	protected WebElement getElement() {
-		WebDriver webdriver= driver.getWebdriver();
+		WebDriver webdriver = driver.getWebdriver();
 		waitDriver.waitForElementToBePresent(byLocator, webdriver);
 		return webdriver.findElement(byLocator);
 	}
-	
-//	protected List<WebElement> getElements(){
-//		WebDriver webdriver = driver.getWebdriver();
-//		waitDriver.waitForElementToBePresent(byLocator, webdriver);
-//		return webdriver.findElements(byLocator);
-//	}
-	
+
 	@Override
 	public boolean isEnabled() {
 		return getElement().isEnabled();
@@ -64,7 +57,7 @@ public abstract class Element implements IElementActions,IMouseMoveable{
 	}
 
 	@Override
-	public String getAttributeValue(String attributeName) {
+	public String getValueOfAnyAttribute(String attributeName) {
 		return getElement().getAttribute(attributeName);
 	}
 
@@ -72,20 +65,20 @@ public abstract class Element implements IElementActions,IMouseMoveable{
 	public int getElementHeight() {
 		return getElement().getSize().height;
 	}
-	
+
 	@Override
 	public int getElementWidth() {
 		return getElement().getSize().width;
 	}
-	
+
 	@Override
 	public void moveToElement() {
 		actionDriver.moveToElement(driver.getWebdriver(), getElement());
 	}
 
 	@Override
-	public void moveByOffset() {
-		// TODO Auto-generated method stub
-		
+	public void moveToElement(int x, int y) {
+		actionDriver.moveToElement(driver.getWebdriver(), getElement(), x, y);
 	}
+
 }

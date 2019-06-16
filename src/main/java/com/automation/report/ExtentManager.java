@@ -10,6 +10,13 @@ public class ExtentManager {
      private static ExtentTest test;
      private static ExtentHtmlReporter htmlReporter;
 
+ 	/**
+ 	 * gets an instance of the report.
+ 	 * 
+ 	 * @param filePath is the path of the file.
+ 	 * @param fileName is the name of the file.
+ 	 * @return the instance of the extent report.
+ 	 */
      public static ExtentReports getExtent(String filePath,String fileName)
      {
          if (extentReport != null)
@@ -30,6 +37,13 @@ public class ExtentManager {
          return htmlReporter;
      }
 
+     /**
+  	 * creates an instance of the test.
+  	 * 
+  	 * @param name is the name of the test case.
+  	 * @param description is a description of what the test case can do.
+  	 * @return the instance of the test.
+  	 */
      public static ExtentTest createTest(String name, String description)
      {
          test = extentReport.createTest(name, description);

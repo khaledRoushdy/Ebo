@@ -20,7 +20,6 @@ public abstract class ClickableElements extends Element implements IClickable, I
 		getElement().click();
 	}
 	
-
 	@Override
 	public void clickOnItUsingJs() {
 		jsDriver.executeJsScript("arguments[0].click();", driver.getWebdriver(), getElement());
@@ -61,11 +60,6 @@ public abstract class ClickableElements extends Element implements IClickable, I
 	@Override
 	public void moveToElement() {
 		actionDriver.moveToElement(driver.getWebdriver(), getElement());
-	}
-
-	@Override
-	public void moveByOffset() {
-		//throw new Exception("not implemented yet")
 	}
 
 	@Override

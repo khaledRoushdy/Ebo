@@ -2,7 +2,6 @@ package com.automation.elements;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.poi.ss.formula.eval.NotImplementedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +12,7 @@ import com.automation.browser.WaitDriver;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-public class Elements<T extends Element> implements IListGetTextable,IMouseMoveable,IElementsActions {
+public class Elements<T extends Element> implements IListGetTextable, IMouseMoveable, IElementsActions {
 
 	protected By byLocator;
 	protected Driver driver;
@@ -71,7 +70,8 @@ public class Elements<T extends Element> implements IListGetTextable,IMouseMovea
 		List<String> listoFtext = new ArrayList<String>();
 		List<WebElement> elements = getElements();
 		for (WebElement webelement : elements) {
-			String text =jsDriver.executeJsScript("eturn arguments[0].text", driver.getWebdriver(), webelement).toString();
+			String text = jsDriver.executeJsScript("eturn arguments[0].text", driver.getWebdriver(), webelement)
+					.toString();
 			listoFtext.add(text);
 		}
 		return listoFtext;
@@ -93,8 +93,9 @@ public class Elements<T extends Element> implements IListGetTextable,IMouseMovea
 		List<String> listoFtext = new ArrayList<String>();
 		List<WebElement> elements = getElements();
 		for (WebElement webelement : elements) {
-			String text =jsDriver.executeJsScript("eturn arguments[0].text", driver.getWebdriver(), webelement).toString();
-			test.log(Status.INFO, "\"" +text+ "\"" + " has been got from " + elementName + " list");
+			String text = jsDriver.executeJsScript("eturn arguments[0].text", driver.getWebdriver(), webelement)
+					.toString();
+			test.log(Status.INFO, "\"" + text + "\"" + " has been got from " + elementName + " list");
 			listoFtext.add(text);
 		}
 		return listoFtext;
@@ -106,15 +107,15 @@ public class Elements<T extends Element> implements IListGetTextable,IMouseMovea
 	}
 
 	@Override
-	public void moveByOffset() {
-		throw new NotImplementedException("Not implemented");
+	public void moveToElement(int x, int y) {
+		actionDriver.moveToElement(driver.getWebdriver(), getElements().get(0), x, y);
 	}
-	
+
 	@Override
 	public boolean areAllElementsEnabled() {
 		List<WebElement> elements = getElements();
 		for (WebElement webElement : elements) {
-			if(!webElement.isEnabled())
+			if (!webElement.isEnabled())
 				return false;
 		}
 		return true;
@@ -124,7 +125,7 @@ public class Elements<T extends Element> implements IListGetTextable,IMouseMovea
 	public boolean areAllElementsDisplayed() {
 		List<WebElement> elements = getElements();
 		for (WebElement webElement : elements) {
-			if(!webElement.isDisplayed())
+			if (!webElement.isDisplayed())
 				return false;
 		}
 		return true;
@@ -134,7 +135,7 @@ public class Elements<T extends Element> implements IListGetTextable,IMouseMovea
 	public boolean areAllElementsSelected() {
 		List<WebElement> elements = getElements();
 		for (WebElement webElement : elements) {
-			if(!webElement.isSelected())
+			if (!webElement.isSelected())
 				return false;
 		}
 		return true;

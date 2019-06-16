@@ -24,6 +24,15 @@ import com.automation.selectelements.DropDownList;
 
 public class ElementFactory {
 
+	/**
+	 * creates the web element
+	 * 
+	 * @param type is the elementType enum ,all the web elements types are found there.
+	 * @param parser is the element parser that is used to get the locator of the web element
+	 * @param driver is the wrapped driver
+	 * @param elementName is the name of the web element that is stored in the json file for each page.
+	 * @return 	the web element created
+	 */
 	public static Element createElement(ElementTypes type, ElementParser parser, Driver driver, String elementName) {
 
 		By elementLocator = parser.getElementByName(elementName);
@@ -90,6 +99,15 @@ public class ElementFactory {
 		return null;
 	}
 	
+	/**
+	 * creates the list of web elements
+	 * 
+	 * @param type is the elementType enum ,all the web elements types are found there.
+	 * @param parser is the element parser that is used to get the locator of the web element
+	 * @param driver is the wrapped driver
+	 * @param elementName is the name of the web element that is stored in the json file for each page.
+	 * @return list of elements created
+	 */
 	public static Elements<?> createListElement(ElementTypes type, ElementParser parser, Driver driver, String elementName) {
 
 		By elementLocator = parser.getElementByName(elementName);

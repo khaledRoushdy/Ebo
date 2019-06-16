@@ -9,8 +9,9 @@ public interface IActionable {
 	public void clickAndHold(WebDriver driver,WebElement element);
 	public void contextClick(WebDriver driver,WebElement element);
 	public void doubleClick(WebDriver driver,WebElement element);
-	public void dragAndDrop();
-	public void dragAndRopBy();
+	public void dragAndDrop(WebDriver driver,WebElement element,WebElement target);
+	public void dragAndDropBy(WebDriver driver,WebElement element,int x,int y);
 	public void moveToElement(WebDriver driver,WebElement element);
-	public void moveByOffset();
+	public void moveToElement(WebDriver driver,WebElement element,int x,int y);
+	public void moveByOffset(WebDriver driver,int x,int y);
 }

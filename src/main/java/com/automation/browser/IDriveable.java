@@ -36,4 +36,6 @@ public interface IDriveable {
 	public void switchToFrame(By byLocator);
 
 	public void maximizeWindow();
+	
+	public void moveToPoint(int x,int y);
 }

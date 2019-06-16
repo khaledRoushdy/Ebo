@@ -24,27 +24,23 @@ public class ActionDriver implements IActionable{
 	}
 
 	@Override
-	public void dragAndDrop() {
-		// TODO Auto-generated method stub
-		
+	public void dragAndDrop(WebDriver driver,WebElement element,WebElement target){
+		getActionDriver(driver).dragAndDrop(element, target).build().perform();
 	}
 
 	@Override
-	public void dragAndRopBy() {
-		// TODO Auto-generated method stub
-		
+	public void dragAndDropBy(WebDriver driver,WebElement element,int x,int y) {
+		getActionDriver(driver).dragAndDropBy(element, x, y);
 	}
 
 	@Override
 	public void moveToElement(WebDriver driver,WebElement element) {
-		// TODO Auto-generated method stub
 		getActionDriver(driver).moveToElement(element).perform();
 	}
 
 	@Override
-	public void moveByOffset() {
-		throw new NotImplementedException("not implemented yet");
-		
+	public void moveByOffset(WebDriver driver,int x,int y) {
+		getActionDriver(driver).moveByOffset(x, y);
 	}
 
 	@Override
@@ -55,5 +51,10 @@ public class ActionDriver implements IActionable{
 	@Override
 	public void contextClick(WebDriver driver, WebElement element) {
 		getActionDriver(driver).contextClick(element).perform();
+	}
+
+	@Override
+	public void moveToElement(WebDriver driver, WebElement element, int x, int y) {
+		getActionDriver(driver).moveToElement(element, x, y);
 	}
 }
