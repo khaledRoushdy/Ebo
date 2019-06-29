@@ -2,19 +2,19 @@
 
 # Ebo
 
-Ebo is a test framework that helps the automation engineers/developers to write less code with high maintainability.Ebo uses libraries like Selenium-java, Extentreports, Jackson-databind and Apache POI.
+Ebo is a test framework that helps automation engineers/developers to write less code with high maintainability. Ebo uses libraries like Selenium-java, Extentreports, Jackson-databind and Apache POI.
 
 ## Installation
 
 The framework is available to be downloaded from [here](https://search.maven.org/artifact/com.github.khaledroushdy/ebo/1.1/jar)
-Use the package manager [maven](https://maven.apache.org/download.cgi) to install ebo.
+Use the package manager [maven](https://maven.apache.org/download.cgi) to install ebo by running.
 
 ```bash
 mvn install
 ```
 
 ## Create Pages
-If you want to create pages using ebo framework, you can use [Pages Automation Tool](http://spooky-root.surge.sh/).After you entered all the required fields and you downloaded your json file and java class then you will need to import the json file and template of the java class file into your project.
+If you want to create pages using Ebo framework, you can use [Pages Automation Tool](http://spooky-root.surge.sh/). After you entered all the required fields and you downloaded your json file and java class then you will need to import the json file and template of the java class file into your project.
 This is a sample of the template that you will get from Pages Automation Tool and where you should put your json file.
 
 ```bash
@@ -72,7 +72,7 @@ When you type eboTextbox then all the methods of this Textbox will be shown
 and when you type eboButton then all the methods of this Button will be shown.
 [![ebo-Button-Methods.png](https://i.postimg.cc/jjRXH26D/ebo-Button-Methods.png)](https://postimg.cc/k2hK9npC)
 
-If you want to log all the action done by the web elements you can use the methods that takes ExtentTest as a parameter
+If you want to log all the actions done by the web elements you can use the methods that take ExtentTest as a parameter
 ```
 public void login(String username) {
 		// the output in the report will be "username has been entered into ebo
@@ -84,7 +84,7 @@ public void login(String username) {
 
  ``` 
 
-There are several types of web elements that can be found in Pages Automation Tool like (Button,Textbox,Textarea,Span,Div..etc)
+There are several types of web elements that can be found in Pages Automation Tool like (Button, Textbox, Textarea, Span, Div..etc).
 
 ## Create Tests
 You can write your tests using TestNG or JUnit
@@ -150,10 +150,10 @@ public class SmokeTests {
   
 ```
 ## Data driven using excel
-If you want to read your data that are stored in a excel file ,then your excel sheet should look like this
+If you want to read your data that are stored in excel file then your excel sheet should look like this
 [![excelPic.png](https://i.postimg.cc/L4NZs4Py/excelPic.png)](https://postimg.cc/Wtq4WvXr)
 
-To get the data from the excel you can get using ExcelTestParser api which has 3 methods  <br />
+To get the data from the excel you can get it using ExcelTestParser API which has 3 methods  <br />
 GetCellValue() which return a specific cell value.  <br />
 GetSpecificTestCase() which returns a specific test case.  <br />
 GetAllTestCases() which returns all the test cases.  <br />
