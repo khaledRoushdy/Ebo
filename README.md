@@ -12,9 +12,42 @@ Use the package manager [maven](https://maven.apache.org/download.cgi) to instal
 ```bash
 mvn install
 ```
+## Usage
 
-## Create Pages
-If you want to create pages using Ebo framework, you can use [Pages Automation Tool](http://spooky-root.surge.sh/). After you entered all the required fields and you downloaded your json file and java class then you will need to import the json file and template of the java class file into your project.
+If i want to write automated tests for this website
+[![Demo-Website.png](https://i.postimg.cc/nVT1GWFS/Demo-Website.png)](https://postimg.cc/9zRTWJqy)
+
+**The First Sceanrio:** </br>
+**Title:** Successful login </br>
+**Steps:** </br>I will navigate to the url of https://s1.demo.opensourcecms.com/wordpress/wp-login.php. </br>
+       I will enter valid username and password. </br> 
+       Then i will click the login button. </br>
+**Expected results:** The home page is opened. </br>
+
+**The Second Scenario:** </br>
+**Title:** Invalid login </br>
+**Steps:** </br> I will navigate to the url of https://s1.demo.opensourcecms.com/wordpress/wp-login.php. </br>
+	I will enter invalid username and password. </br>
+	Then i will click the login button. </br>
+**Expected Results:** An error message is shown "Invalid username." </br>	
+
+## Create Login Page
+If you want to create pages using Ebo framework, you can use [Pages Automation Tool](http://spooky-root.surge.sh/). 
+After you inspect the username textbox and get it's id then you will add it like this.</br>
+[![username-Demo-Website.png](https://i.postimg.cc/fLy4Crtc/username-Demo-Website.png)](https://postimg.cc/Lqc06vV5)
+Then you will inspect the password textbox and get it'id and you will add it like this.</br>
+[![password-Demo-Website.png](https://i.postimg.cc/c4Zp5Cn1/password-Demo-Website.png)](https://postimg.cc/0rWXz8nh)
+Then you will inspect the login button and get it's name and you will add like this.</br>
+[![login-Button-Demo-Website.png](https://i.postimg.cc/y8xrwZYK/login-Button-Demo-Website.png)](https://postimg.cc/68s0ZTvb)
+Then you will inspect the error message for that will be used in the second sceanrio and you will add like this using it's css
+[![errormessage-Demo-Site.png](https://i.postimg.cc/YScfbGvb/errormessage-Demo-Site.png)](https://postimg.cc/Yv3WSSfW)
+
+</br>
+This is how all the web elements are added in Pages Automation Tool.</br>
+[![login-Json-Download.png](https://i.postimg.cc/WzJ0GssQ/login-Json-Download.png)](https://postimg.cc/PvTLhsp4)
+<br/>
+When you select "Download WebElements Page" button you will have to enter a name for your file i will name it "LoginPage"
+
 This is a sample of the template that you will get from Pages Automation Tool and where you should put your json file.
 
 ```bash
