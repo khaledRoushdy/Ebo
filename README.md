@@ -2,7 +2,7 @@
 
 # Ebo
 
-Ebo is a test framework that is wrapper for some libraries like apache poi,selenium and extentreport.It helps the automation engineers to write less code with high maintainability.
+Ebo is a test framework that helps the automation engineers/developers to write less code with high maintainability.Ebo uses libraries like Selenium-java, Extentreports, Jackson-databind and Apache POI.
 
 ## Installation
 
@@ -14,8 +14,8 @@ mvn install
 ```
 
 ## Create Pages
-If you want to create pages using ebo framework, you can use [Pages Automation Tool](http://spooky-root.surge.sh/).After you entered all the required fields.You will need to import the json file and template of the java class file into your project.
-This is a sample of a the template that you will get from Pages Automation Tool.
+If you want to create pages using ebo framework, you can use [Pages Automation Tool](http://spooky-root.surge.sh/).After you entered all the required fields and you downloaded your json file and java class then you will need to import the json file and template of the java class file into your project.
+This is a sample of the template that you will get from Pages Automation Tool and where you should put your json file.
 
 ```bash
 package com.automation.pages;
@@ -59,17 +59,20 @@ public class EboLoginPage{
 }
 ```
 
-You can edit your EboLoginPage class by adding a method called login
+You can edit your EboLoginPage class by adding any method that will use your web elements
 ```
 public void login(String username) {
 		eboTextbox().enterText(username);
 		eboButton().clickOnIt();
 	}
 ```
-All the methods that are related to the textbox will be shown and then when you type eboButton all the methods that are related to the 
-Button will be shown.
+When you type eboTextbox then all the methods of this Textbox will be shown
+[![ebo-Textbox-Methods.png](https://i.postimg.cc/8Cr1bk1V/ebo-Textbox-Methods.png)](https://postimg.cc/nspbFJjd)
 
-If you want to log all the action done by the web elements you can add the login method like this
+and when you type eboButton then all the methods of this Button will be shown.
+[![ebo-Button-Methods.png](https://i.postimg.cc/jjRXH26D/ebo-Button-Methods.png)](https://postimg.cc/k2hK9npC)
+
+If you want to log all the action done by the web elements you can use the methods that takes ExtentTest as a parameter
 ```
 public void login(String username) {
 		// the output in the report will be "username has been entered into ebo
@@ -81,7 +84,7 @@ public void login(String username) {
 
  ``` 
 
-There are several types of web elements that can be found in Pages Automation Tool like (Button,textbox,textarea,span,div..etc)
+There are several types of web elements that can be found in Pages Automation Tool like (Button,Textbox,Textarea,Span,Div..etc)
 
 ## Create Tests
 You can write your tests using TestNG or JUnit
@@ -94,7 +97,6 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.rules.TestName;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -105,7 +107,7 @@ import com.github.khaledroushdy.report.ExtentManager;
 public class SmokeTests {
 
 	private EboLoginTest eboLoginTest;
-	private Driver driver; // wrapper driver that can log all the actions done by it.
+	private Driver driver; // wrapper driver that can log all the actions done by the web elements and will be used in the pages.
 	private ExtentReports extentReport;
 	private ExtentTest test;
 
@@ -156,14 +158,16 @@ GetCellValue() which return a specific cell value.  <br />
 GetSpecificTestCase() which returns a specific test case.  <br />
 GetAllTestCases() which returns all the test cases.  <br />
 ```
-@Test
+	@Test
 	public void getDataFromExcel() throws IOException {
-
 		ExcelTestParser testParser = new ExcelTestParser("path of the excel sheet");
+		//get a specific cell value.
 		String username = testParser.getCellValue("name of the sheet", "the name of the test case", "column name")
-				.toString(); 	
-		Map<Object, Object> testCase=testParser.getSpecificTestCase("name of the sheet", "name of the test case");// get a specific test case
-		HashMap<String, HashMap<String, String>>allTestCase= testParser.getAllTestCases("name of the sheet"); //get all the test cases
+				.toString();
+		// get a specific test case.
+		Map<Object, Object> testCase = testParser.getSpecificTestCase("name of the sheet", "name of the test case");
+		//get all the test cases.
+		HashMap<String, HashMap<String, String>> allTestCase = testParser.getAllTestCases("name of the sheet"); 
 	}
 ```
 
