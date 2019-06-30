@@ -41,14 +41,25 @@ Then you will inspect the login button and get it's name and you will add like t
 [![login-Button-Demo-Website.png](https://i.postimg.cc/y8xrwZYK/login-Button-Demo-Website.png)](https://postimg.cc/68s0ZTvb)
 Then you will inspect the error message for that will be used in the second sceanrio and you will add like this using it's css
 [![errormessage-Demo-Site.png](https://i.postimg.cc/YScfbGvb/errormessage-Demo-Site.png)](https://postimg.cc/Yv3WSSfW)
-
-</br>
-This is how all the web elements are added in Pages Automation Tool.</br>
+This is how all the web elements are added in Pages Automation Tool
+[![All-Webelements-Added.png](https://i.postimg.cc/5tML8hrr/All-Webelements-Added.png)](https://postimg.cc/HrBrghd0)
+<br/>
+<br/>
+When you select "Download WebElements Page" button you will have to enter a name for your file i will name it "loginPage"
+[![pageName.png](https://i.postimg.cc/gJD634Lb/pageName.png)](https://postimg.cc/wy1vpXkw)
+<br/>
+<br/>
+When you select ok button, a json file named loginPage is downloaded and a modal is shown so that you can download the java class
 [![login-Json-Download.png](https://i.postimg.cc/WzJ0GssQ/login-Json-Download.png)](https://postimg.cc/PvTLhsp4)
 <br/>
-When you select "Download WebElements Page" button you will have to enter a name for your file i will name it "LoginPage"
+If you select yes button, you will have to enter the name of the pages package
+[![packagename-Demowebsite.png](https://i.postimg.cc/855rBMRF/packagename-Demowebsite.png)](https://postimg.cc/nsyznswZ)
+Now you have downloaded 2 files "loginPage.json" and "LoginPage.java"
+[![login-Page-Java-Demo-Website.png](https://i.postimg.cc/YqJV5xjH/login-Page-Java-Demo-Website.png)](https://postimg.cc/N5kpTm1J)
 
-This is a sample of the template that you will get from Pages Automation Tool and where you should put your json file.
+We need to create this path in your project "src/main/resources/objectRepository" and put the loginPage.json in it or you can edit the default location in loginPage.java.</br>
+
+This is a sample of the template for the loginPage.java that you will get from Pages Automation Tool and where you should put your json file.
 
 ```bash
 package com.automation.pages;
@@ -62,57 +73,76 @@ import com.github.khaledroushdy.jsonParser.ElementParser;
 import com.aventstack.extentreports.ExtentTest;
 import com.github.khaledroushdy.browser.Driver;
 
-public class EboLoginPage{
+public class LoginPage{
 
 	/*This path of the json file that you downloaded from Pages Automation tool, you can either create this path in your project or 
 	 change the path of the file from here.
 	*/
-	private ElementParser elementParser = new ElementParser("src/main/resources/objectRepository/EboLoginPage.json");
+	private ElementParser elementParser = new ElementParser("src/main/resources/objectRepository/LoginPage.json");
 	private Driver driver;
 	private ExtentTest test;
 
-	public EboLoginPage(Driver driver, ExtentTest test) {
+	public LoginPage(Driver driver, ExtentTest test) {
 		this.driver = driver;
 		this.test = test;
 	}
 
-	public EboLoginPage(Driver driver) {
+	public LoginPage(Driver driver) {
 		this.driver = driver;
 	}
 
-	private Textbox eboTextbox() {
-		Textbox eboTextbox= (Textbox) ElementFactory.createElement(ElementTypes.TEXTBOX,elementParser, driver,"eboTextbox");
-		return eboTextbox;
+	private Textbox usernameTextbox() {
+		Textbox usernameTextbox= (Textbox) ElementFactory.createElement(ElementTypes.TEXTBOX,elementParser, driver,"usernameTextbox");
+		return usernameTextbox;
+	}
+	
+	private Textbox passwordTextbox() {
+		Textbox passwordTextbox = (Textbox) ElementFactory.createElement(ElementTypes.TEXTBOX, elementParser, driver,
+				"passwordTextbox");
+		return passwordTextbox;
 	}
 
-	private Button eboButton() {
-		Button eboButton= (Button) ElementFactory.createElement(ElementTypes.BUTTON,elementParser, driver,"eboButton");
-		return eboButton;
+	private Button loginButton() {
+		Button loginButton = (Button) ElementFactory.createElement(ElementTypes.BUTTON, elementParser, driver,
+				"loginButton");
+		return loginButton;
 	}
+
+	private Div errorMessage() {
+		Div errorMessage = (Div) ElementFactory.createElement(ElementTypes.DIV, elementParser, driver, "errorMessage");
+		return errorMessage;
+	}
+		
 }
 ```
 
-You can edit your EboLoginPage class by adding any method that will use your web elements
+You can edit your LoginPage class by adding any method that will use your web elements
 ```
-public void login(String username) {
-		eboTextbox().enterText(username);
-		eboButton().clickOnIt();
+public void login(String username,String password) {
+		usernameTextbox().enterText(username);
+		passwordTextbox().enterText(password);
+		loginButton().clickOnIt();
 	}
+public String getErrorMessage(){
+	     return errorMessage().getText();	
+}
 ```
-When you type eboTextbox then all the methods of this Textbox will be shown
-[![ebo-Textbox-Methods.png](https://i.postimg.cc/8Cr1bk1V/ebo-Textbox-Methods.png)](https://postimg.cc/nspbFJjd)
+When you type usernameTextbox then all the methods of this Textbox will be shown
+[![username-Textbox-Methods.png](https://i.postimg.cc/HxTMhFbh/username-Textbox-Methods.png)](https://postimg.cc/cK56K99R)
 
-and when you type eboButton then all the methods of this Button will be shown.
-[![ebo-Button-Methods.png](https://i.postimg.cc/jjRXH26D/ebo-Button-Methods.png)](https://postimg.cc/k2hK9npC)
+and when you type loginButton then all the methods of this Button will be shown.
+[![login-Button-Methods.png](https://i.postimg.cc/XqJCVFHK/login-Button-Methods.png)](https://postimg.cc/1nktBgZ4)
 
+and when you type errorMessage then all the methods of this Div will be shown
+[![error-Message-Methods.png](https://i.postimg.cc/2SvB8Cwt/error-Message-Methods.png)](https://postimg.cc/XrjvsStK)
 If you want to log all the actions done by the web elements you can use the methods that take ExtentTest as a parameter
 ```
-public void login(String username) {
-		// the output in the report will be "username has been entered into ebo
+public void login(String username,String password) {
+		// the output in the report will be "username has been entered into username
 		// textbox".
-		eboTextbox().enterText(username, "ebo textbox", test);
-		// the output in the report will be be "ebo button has been clicked
-		eboButton().clickOnIt("ebo button", test);
+		eboTextbox().enterText(username, "username textbox", test);
+		// the output in the report will be be "login button has been clicked
+		eboButton().clickOnIt("login button", test);
 	}
 
  ``` 
