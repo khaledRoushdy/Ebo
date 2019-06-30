@@ -140,9 +140,9 @@ If you want to log all the actions done by the web elements you can use the meth
 public void login(String username,String password) {
 		// the output in the report will be "username has been entered into username
 		// textbox".
-		eboTextbox().enterText(username, "username textbox", test);
+		usernameTextbox().enterText(username, "username textbox", test);
 		// the output in the report will be be "login button has been clicked
-		eboButton().clickOnIt("login button", test);
+		loginButton().clickOnIt("login button", test);
 	}
 
  ``` 
