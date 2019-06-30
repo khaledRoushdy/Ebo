@@ -169,7 +169,7 @@ import com.github.khaledroushdy.report.ExtentManager;
 
 public class SmokeTests {
 
-	private EboLoginTest eboLoginTest;
+	private LoginPage loginPage;
 	private Driver driver; // wrapper driver that can log all the actions done by the web elements and will be used in the pages.
 	private ExtentReports extentReport;
 	private ExtentTest test;
@@ -187,18 +187,29 @@ public class SmokeTests {
 	}
 
 	@Test
-	public void loginTestUsingTheReport() {
-		test = extentReport.createTest("name of your test", "description of what your test does");
-		driver.goToUrl("your url");
-		eboLoginPage = new eboLoginPage(driver, test);
-		eboLoginPage.login("my username");
+	public void successfulLoginTest() throws InterruptedException {
+		test = extentReport.createTest("Successful login test", "The user should login with valid credentials");
+		driver.goToUrl("https://s1.demo.opensourcecms.com/wordpress/wp-login.php");
+		loginPage = new loginPage(driver, test);
+		loginPage.login("opensourcecms","opensourcecms");
+		//Put your assertions here
 	}
 
 	@Test
-	public void loginTestWithoutUsingTheReport() {
-		driver.goToUrl("your url");
-		eboLoginPage = new eboLoginPage(driver);
-		eboLoginPage.login("my username");
+	public void invalidLoginTest() throws InterruptedException {
+		test = extentReport.createTest("invalid login test", "The user should not login with invalid credentials");
+		driver.goToUrl("https://s1.demo.opensourcecms.com/wordpress/wp-login.php");
+		loginPage = new loginPage(driver,test);
+		loginPage.login("invalid name","invalid password");
+		String errorMessage = loginPage.getErrorMessage();
+		if(errorMessage.equals("Invalid username")){
+			Assert.assertTrue(true);
+			test.log(Status.PASS, "invalid login test has passed");
+		}
+		else{
+			test.log(Status.FAIL, "Successful login has failed");
+			Assert.assertTrue(false);
+		}
 	}
 
 	@After
@@ -214,23 +225,46 @@ public class SmokeTests {
 ```
 ## Data driven using excel
 If you want to read your data that are stored in excel file then your excel sheet should look like this
-[![excelPic.png](https://i.postimg.cc/L4NZs4Py/excelPic.png)](https://postimg.cc/Wtq4WvXr)
+[![excel-Pic2.png](https://i.postimg.cc/QtSspcbg/excel-Pic2.png)](https://postimg.cc/DJWthJRm)
 
 To get the data from the excel you can get it using ExcelTestParser API which has 3 methods  <br />
 GetCellValue() which return a specific cell value.  <br />
 GetSpecificTestCase() which returns a specific test case.  <br />
 GetAllTestCases() which returns all the test cases.  <br />
 ```
+/* i will use getCellValue in this example */
 	@Test
-	public void getDataFromExcel() throws IOException {
-		ExcelTestParser testParser = new ExcelTestParser("path of the excel sheet");
-		//get a specific cell value.
-		String username = testParser.getCellValue("name of the sheet", "the name of the test case", "column name")
-				.toString();
-		// get a specific test case.
-		Map<Object, Object> testCase = testParser.getSpecificTestCase("name of the sheet", "name of the test case");
-		//get all the test cases.
-		HashMap<String, HashMap<String, String>> allTestCase = testParser.getAllTestCases("name of the sheet"); 
+	public void successfulLoginTest() throws InterruptedException {
+		test = extentReport.createTest("Successful login test", "The user should login with valid credentials");
+		ExcelTestParser testParser = new ExcelTestParser("your excel sheet path");
+		String username = testParser.getCellValue("sheet name","successfulLoginTest","username");
+		String password = testParser.getCellValue("sheet name","successfulLoginTest","password");
+		driver.goToUrl("https://s1.demo.opensourcecms.com/wordpress/wp-login.php");
+		loginPage = new loginPage(driver, test);
+		loginPage.login(username,password);
+	}
+```
+
+```
+/* i will use getSpecificTestCase in this example */
+	@Test
+	public void successfulLoginTest() throws InterruptedException {
+		test = extentReport.createTest("Successful login test", "The user should login with valid credentials");
+		ExcelTestParser testParser = new ExcelTestParser("your excel sheet path");
+		Map<Object,Object> testData= testParser.getSpecificTestCase("sheet name","successfulLoginTest");
+		driver.goToUrl("https://s1.demo.opensourcecms.com/wordpress/wp-login.php");
+		loginPage = new loginPage(driver, test);
+		loginPage.login(testData.get("username").toString(),testData.get("password").toString());
+		//Put your assertions here
+	}
+
+```
+```
+/* i will use getAllTestCases in this example */
+	public HashMap<String, HashMap<String, String>> getAllTestData(){
+		ExcelTestParser testParser = new ExcelTestParser("your excel sheet path");
+		HashMap<String, HashMap<String, String>> allTestData= testParser.getAllTestData("sheet name");
+		return allTestData;
 	}
 ```
 
