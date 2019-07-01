@@ -2,7 +2,7 @@
 
 # Ebo
 
-Ebo is a hybrid test framework that helps automation engineers/developers to write less code with high maintainability. Ebo is a hybrid framework that is a mixture between page object pattern and data-driven. Ebo uses libraries like Selenium-java, Extentreports, Jackson-databind and Apache POI.
+Ebo is a hybrid test framework that helps automation engineers/developers to write less code with high maintainability. It is a mixture between page object pattern and data-driven and uses libraries like Selenium-java, Extentreports, Jackson-databind and Apache POI.
 
 ## Installation
 
