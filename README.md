@@ -7,14 +7,24 @@ Ebo is a test framework that helps automation engineers/developers to write less
 ## Installation
 
 The framework is available to be downloaded from [here](https://search.maven.org/artifact/com.github.khaledroushdy/ebo/1.1/jar)
-Use the package manager [maven](https://maven.apache.org/download.cgi) to install ebo by running.
-
+Use the package manager [maven](https://maven.apache.org/download.cgi) if you are creating a maven project.To install ebo as this dependency in your pom.xml file
+```bash
+        <dependency>
+            <groupId>com.github.khaledroushdy</groupId>
+            <artifactId>ebo</artifactId>
+            <version>1.1</version>
+        </dependency>
+```
+Then run this command 
 ```bash
 mvn install
 ```
+If you attempt to create a java project then navigate to https://search.maven.org/search?q=ebo and choose from download "jar-with-dependencies.jar"
+[![Screenshot-from-2019-07-01-15-44-04.png](https://i.postimg.cc/V6Xmks29/Screenshot-from-2019-07-01-15-44-04.png)](https://postimg.cc/N9GWNtsL)
+
 ## Usage
 
-If i want to write automated tests for this website
+If i want to write automated tests for this webpage
 [![Demo-Website.png](https://i.postimg.cc/nVT1GWFS/Demo-Website.png)](https://postimg.cc/9zRTWJqy)
 
 **The First Sceanrio:** </br>
@@ -33,13 +43,13 @@ If i want to write automated tests for this website
 
 ## Create Login Page
 If you want to create pages using Ebo framework, you can use [Pages Automation Tool](http://spooky-root.surge.sh/). 
-After you inspect the username textbox and get it's id then you will add it like this.</br>
+You will need to inspect the username textbox and get it's id then add it like this.</br>
 [![username-Demo-Website.png](https://i.postimg.cc/fLy4Crtc/username-Demo-Website.png)](https://postimg.cc/Lqc06vV5)
-Then you will inspect the password textbox and get it'id and you will add it like this.</br>
+Then you will inspect the password textbox and get it'id and you add it like this.</br>
 [![password-Demo-Website.png](https://i.postimg.cc/c4Zp5Cn1/password-Demo-Website.png)](https://postimg.cc/0rWXz8nh)
-Then you will inspect the login button and get it's name and you will add like this.</br>
+Then you will inspect the login button and get it's name and will add like this.</br>
 [![login-Button-Demo-Website.png](https://i.postimg.cc/y8xrwZYK/login-Button-Demo-Website.png)](https://postimg.cc/68s0ZTvb)
-Then you will inspect the error message for that will be used in the second sceanrio and you will add like this using it's css
+Then you will inspect the error message for that will be used in the second sceanrio and add like this using it's css
 [![errormessage-Demo-Site.png](https://i.postimg.cc/YScfbGvb/errormessage-Demo-Site.png)](https://postimg.cc/Yv3WSSfW)
 This is how all the web elements are added in Pages Automation Tool
 [![All-Webelements-Added.png](https://i.postimg.cc/5tML8hrr/All-Webelements-Added.png)](https://postimg.cc/HrBrghd0)
@@ -57,7 +67,7 @@ If you select yes button, you will have to enter the name of the pages package
 Now you have downloaded 2 files "loginPage.json" and "LoginPage.java"
 [![login-Page-Java-Demo-Website.png](https://i.postimg.cc/YqJV5xjH/login-Page-Java-Demo-Website.png)](https://postimg.cc/N5kpTm1J)
 
-We need to create this path in your project "src/main/resources/objectRepository" and put the loginPage.json in it or you can edit the default location in loginPage.java.</br>
+You need to create this path in your project "src/main/resources/objectRepository" and put the loginPage.json in it or you can edit the default location in loginPage.java.</br>
 
 This is a sample of the template for the loginPage.java that you will get from Pages Automation Tool and where you should put your json file.
 
@@ -147,7 +157,8 @@ public void login(String username,String password) {
 
  ``` 
 
-There are several types of web elements that can be found in Pages Automation Tool like (Button, Textbox, Textarea, Span, Div..etc).
+There are several types of web elements that can be found in Pages Automation Tool like (Button, Textbox, Textarea, Span, Div..etc).</br>
+All the locator types are found also in the Pages Automation Tool like (Id, Name, Xpath, CssSelector...etc).
 
 ## Create Tests
 You can write your tests using TestNG or JUnit
@@ -182,7 +193,8 @@ public class SmokeTests {
 
 	@Before
 	public void setUp() {
-		// This is a the driver that the pages will use
+		// This is a the driver that the pages will use and type is Chrome
+		//You can change it to firefox or IE
 		driver = new Driver(DriverTypes.Chrome, "path of your chrome driver");
 	}
 
