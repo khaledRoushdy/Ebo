@@ -2,12 +2,12 @@
 
 # Ebo
 
-Ebo is a test framework that helps automation engineers/developers to write less code with high maintainability. Ebo uses libraries like Selenium-java, Extentreports, Jackson-databind and Apache POI.
+Ebo is a hybrid test framework that helps automation engineers/developers to write less code with high maintainability. Ebo is a hybrid framework that is a mixture between page object pattern and data-driven. Ebo uses libraries like Selenium-java, Extentreports, Jackson-databind and Apache POI.
 
 ## Installation
 
 The framework is available to be downloaded from [here](https://search.maven.org/artifact/com.github.khaledroushdy/ebo/1.1/jar)
-Use the package manager [maven](https://maven.apache.org/download.cgi) if you are creating a maven project.To install ebo as this dependency in your pom.xml file
+Use the package manager [maven](https://maven.apache.org/download.cgi) if you are creating a maven project. To install ebo add this dependency in your pom.xml file
 ```bash
         <dependency>
             <groupId>com.github.khaledroushdy</groupId>
@@ -19,7 +19,7 @@ Then run this command
 ```bash
 mvn install
 ```
-If you attempt to create a java project then navigate to https://search.maven.org/search?q=ebo and choose from download "jar-with-dependencies.jar"
+If you attempt to create a java project then navigate to https://search.maven.org/search?q=ebo and choose from download "jar-with-dependencies.jar" and then import this jar in your project.
 [![Screenshot-from-2019-07-01-15-44-04.png](https://i.postimg.cc/V6Xmks29/Screenshot-from-2019-07-01-15-44-04.png)](https://postimg.cc/N9GWNtsL)
 
 ## Usage
